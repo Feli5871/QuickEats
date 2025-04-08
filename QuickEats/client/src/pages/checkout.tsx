@@ -150,7 +150,7 @@ export default function Checkout() {
     defaultValues: {
       address: "",
       droneDelivery: false,
-      lat: 40.6976, // Union, NJ coordinates
+      lat: 40.6976, //  Union NJ coordinates. Default map location
       lng: -74.2632,
     },
   });
@@ -159,7 +159,7 @@ export default function Checkout() {
     form.setValue('lat', lat);
     form.setValue('lng', lng);
 
-    // Reverse geocode to get address
+    //  Geocode to get address
     fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`)
       .then(res => res.json())
       .then(data => {

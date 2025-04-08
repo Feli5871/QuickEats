@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* New QuickEats styling */
+.page-container {
+  @apply flex min-h-screen;
+}
+
+.main-content {
+  @apply flex-grow;
+}
+
+.section {
+  @apply hidden;
+}
+
+.section.active {
+  @apply block;
+}
+
+.home-section {
+  @apply text-center py-16 space-y-6;
+}
+
+.featured-section {
+  @apply py-12;
+}
+
+.carousel-container {
+  @apply relative max-w-5xl mx-auto my-8;
+}
+
+.carousel {
+  @apply overflow-hidden;
+}
+
+.carousel-inner {
+  @apply flex transition-transform duration-300;
+}
+
+.featured-card {
+  @apply flex-shrink-0 w-64 mx-2 border rounded-lg overflow-hidden bg-card;
+}
+
+.featured-card img {
+  @apply w-full h-40 object-contain p-3 bg-white rounded-md shadow-sm;
+}
+
+.logo-container {
+  @apply w-full h-40 flex items-center justify-center p-3 bg-primary/10 rounded-md shadow-sm;
+}
+
+.carousel-btn {
+  @apply absolute top-1/2 -translate-y-1/2 bg-primary/80 text-white w-10 h-10 rounded-full 
+  flex items-center justify-center text-xl hover:bg-primary focus:outline-none;
+}
+
+.carousel-btn.left {
+  @apply left-0 -ml-5;
+}
+
+.carousel-btn.right {
+  @apply right-0 -mr-5;
+}
+
+.features-section {
+  @apply py-12;
+}
+
+.features-grid {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4;
+}
+
+.feature-card {
+  @apply border rounded-lg p-6 bg-card text-center flex flex-col items-center;
+}
+
+.feature-card img {
+  @apply w-full h-48 object-cover rounded-lg mb-4;
+}
+
+.feature-card button {
+  @apply mt-auto bg-primary text-white px-4 py-2 rounded hover:bg-primary/80;
+}
+
+.reviews {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto px-4 py-12;
+}
+
+.review-card {
+  @apply border rounded-lg p-4 bg-card;
+}
+
+.stars {
+  @apply text-yellow-500 mb-2;
+}
+
+.filter-sidebar {
+  @apply w-64 border-r p-4 hidden md:block;
+}
+
+.filter-section {
+  @apply mb-6;
+}
+
+.filter-section h4 {
+  @apply mb-2 font-medium;
+}
+
+.filter-section label {
+  @apply block mb-1;
+}
+
+.search-filter {
+  @apply flex flex-col md:flex-row justify-between items-center mb-6 gap-4;
+}
+
+.search-filter input {
+  @apply p-2 rounded border w-full md:w-auto;
+}
+
+.search-filter select {
+  @apply p-2 rounded border w-full md:w-auto;
+}
+
+.restaurant-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.restaurant-card {
+  @apply border rounded-lg overflow-hidden bg-card transition-transform hover:scale-105;
+}
+
+.restaurant-img {
+  @apply w-full h-48 object-cover p-2;
+}
+
+.menu {
+  @apply max-h-0 overflow-hidden transition-all duration-300;
+}
+
+.menu.active {
+  @apply max-h-96 mt-4;
+}
+
+.menu-item {
+  @apply flex justify-between items-center border-b p-2;
+}
+
+.menu-item:last-child {
+  @apply border-b-0;
+}
+
+.auth-forms {
+  @apply max-w-md mx-auto p-6 border rounded-lg bg-card space-y-4;
+}
+
+.cart-sidebar {
+  @apply fixed top-0 right-0 w-80 h-full bg-card border-l transform translate-x-full 
+  transition-transform duration-300 z-50 p-4 overflow-auto;
+}
+
+.cart-sidebar.active {
+  @apply translate-x-0;
+}
+
+.close-cart {
+  @apply absolute top-2 right-2 text-xl;
+}
+
+.checkout {
+  @apply w-full bg-primary text-white py-2 rounded mt-4;
+}

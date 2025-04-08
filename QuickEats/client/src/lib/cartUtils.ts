@@ -42,7 +42,7 @@ export function getCart(): CartItem[] {
 export function saveCart(cart: CartItem[]): void {
   localStorage.setItem('cart', JSON.stringify(cart));
   
-  // Dispatch a custom event to notify listeners that cart has been updated
+  // Show a custom event to notify user that cart has been updated
   const event = new CustomEvent('cartUpdated', { detail: cart });
   window.dispatchEvent(event);
 }
@@ -54,7 +54,7 @@ export function calculateTotal(items: CartItem[]): number {
 export function clearCart(): void {
   localStorage.removeItem('cart');
   
-  // Dispatch a custom event to notify listeners that cart has been cleared
+  // Show a custom event to notify user that cart has been cleared
   const event = new CustomEvent('cartUpdated', { detail: [] });
   window.dispatchEvent(event);
 }

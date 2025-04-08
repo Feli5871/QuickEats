@@ -76,7 +76,7 @@ export default function Home() {
     }
   }, [index]);
   
-  // Add a 'featured' property to our Restaurant type
+  // Add a featured property to our Restaurant type
   type EnhancedRestaurant = Restaurant & { featured?: boolean };
   
   // Create virtual restaurants from the featured list
@@ -97,8 +97,7 @@ export default function Home() {
         // If found, mark as featured and record the ID
         existingIds.add(match.id);
         match.featured = true;
-        
-        // Don't update the image - keep the original food image
+  
         // match.image = featured.image;
       }
     });

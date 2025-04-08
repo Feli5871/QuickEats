@@ -7,7 +7,7 @@ type RestaurantFilter = {
   ratings: number[];
 };
 
-// Function to filter restaurants based on selected criteria
+// Function to filter restaurants based on the criteria
 export function filterRestaurants(
   restaurants: any[],
   filters: RestaurantFilter,

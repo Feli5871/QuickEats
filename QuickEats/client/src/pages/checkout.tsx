@@ -18,8 +18,7 @@ import type { MenuItem } from "@shared/schema";
 import { PiDrone } from "react-icons/pi";
 import DeliveryMap from "@/components/delivery-map";
 
-// Make sure to call `loadStripe` outside of a component's render to avoid
-// recreating the `Stripe` object on every render.
+// Make sure to call loadStripe outside of a component's render to avoid making the `Stripe` object on every render.
 if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
   throw new Error('Missing required Stripe key: VITE_STRIPE_PUBLIC_KEY');
 }

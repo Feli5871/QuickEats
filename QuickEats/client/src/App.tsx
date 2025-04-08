@@ -11,7 +11,7 @@ import DroneDeliveryPage from "@/pages/info-drone-delivery";
 import FreshOrganicPage from "@/pages/info-fresh-organic";
 import EasyPaymentsPage from "@/pages/info-easy-payments";
 import Profile from "@/pages/profile";
-import ConfirmationPage from "@/pages/confirmation"; // Assumed import
+import ConfirmationPage from "@/pages/confirmation"; // import
 
 function Router() {
   return (

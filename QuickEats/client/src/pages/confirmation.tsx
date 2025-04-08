@@ -29,7 +29,7 @@ export default function ConfirmationPage() {
         const totalAmount = cartItems.reduce((sum: number, item: CartItem) => 
           sum + (item.price * item.quantity), 0);
 
-        // Generate random order details
+        // Generate order details
         const randomOrderId = Math.floor(100000 + Math.random() * 900000).toString();
         const estimatedMinutes = Math.floor(25 + Math.random() * 20);
 

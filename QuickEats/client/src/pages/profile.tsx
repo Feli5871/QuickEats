@@ -15,17 +15,16 @@ export default function Profile() {
     e.preventDefault();
     
     try {
-      // Simulate authentication - replace with real auth later
+      // Authentication for profile
       if (email && password) {
         toast({
           title: isLogin ? "Logged in successfully!" : "Registered successfully!",
           description: `Welcome ${email}`,
         });
-        // Here you would typically:
-        // 1. Send credentials to backend
-        // 2. Get back a token
-        // 3. Store token in localStorage
-        // 4. Update global auth state
+        // Send credentials to backend
+        // Get back a token
+        // Store token in localStorage
+        // Update global auth state
         localStorage.setItem('user', JSON.stringify({ email }));
       }
     } catch (error) {

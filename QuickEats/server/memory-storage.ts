@@ -7,54 +7,48 @@ import {
   type InsertOrder,
 } from "@shared/schema";
 
-// Interface defining storage operations
 export interface IStorage {
   // Restaurant operations
-  getRestaurants(): Promise<Restaurant[]>;                        // Retrieve all restaurants
-  getRestaurant(id: number): Promise<Restaurant | undefined>;    // Retrieve a specific restaurant by ID
+  getRestaurants(): Promise<Restaurant[]>;
+  getRestaurant(id: number): Promise<Restaurant | undefined>;
 
   // Menu operations
-  getMenuItems(restaurantId: number): Promise<MenuItem[]>;       // Retrieve menu items for a restaurant
+  getMenuItems(restaurantId: number): Promise<MenuItem[]>;
 
   // Order operations
-  createOrder(order: InsertOrder): Promise<Order>;               // Create a new order
-  getOrder(id: number): Promise<Order | undefined>;              // Retrieve a specific order by ID
-  updateOrderStatus(id: number, status: string): Promise<Order | undefined>; // Update the status of an order
+  createOrder(order: InsertOrder): Promise<Order>;
+  getOrder(id: number): Promise<Order | undefined>;
+  updateOrderStatus(id: number, status: string): Promise<Order | undefined>;
 
   // Database setup
-  setupDB(): Promise<void>;                                      // Initialize or reset the in-memory database
+  setupDB(): Promise<void>;
 }
 
-// In-memory implementation of the IStorage interface
 class MemoryStorage implements IStorage {
-  // Internal data stores
   private restaurants: Restaurant[] = [];
   private menuItems: MenuItem[] = [];
   private orders: Order[] = [];
-
-  // Counters to generate unique IDs
   private restaurantIdCounter = 1;
   private menuItemIdCounter = 1;
   private orderIdCounter = 1;
 
   constructor() {}
 
-  // Setup or reset the in-memory database
   async setupDB(): Promise<void> {
     try {
       console.log('Setting up in-memory database...');
 
-      // Clear all existing data
+      // Clear existing data
       this.restaurants = [];
       this.menuItems = [];
       this.orders = [];
 
-      // Reset ID counters
+      // Reset counters
       this.restaurantIdCounter = 1;
       this.menuItemIdCounter = 1;
       this.orderIdCounter = 1;
 
-      // Seed database with initial data (implementation not shown)
+      // Seed with sample data
       await this.seedDatabase();
 
       console.log('In-memory database setup complete.');
@@ -63,9 +57,6 @@ class MemoryStorage implements IStorage {
       throw error;
     }
   }
-
-  // Additional methods like getRestaurants, createOrder, etc., would go here...
-
 
   private async seedDatabase() {
     // Sample restaurant data
@@ -245,7 +236,7 @@ class MemoryStorage implements IStorage {
           name: "Garlic Bread",
           description: "Freshly baked bread with garlic butter",
           price: 6.99,
-          image: "https://images.unsplash.com/photo-1619531038896-defd9b1fc473?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
+          image: "https://images.unsplash.com/photo-1619535860434-ba1d8fa12536?q=80&w=2992&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           category: "Sides",
           popular: false
         });
@@ -275,7 +266,7 @@ class MemoryStorage implements IStorage {
           name: "Chipotle Chicken Cheesesteak",
           description: "Grilled chicken, pepper jack cheese with chipotle mayo",
           price: 12.99,
-          image: "https://images.unsplash.com/photo-1539252554873-9e918320f1b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80",
+          image: "https://images.unsplash.com/photo-1649138760204-be8bee6e17f3?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           category: "Hot Subs",
           popular: true
         });
@@ -285,7 +276,7 @@ class MemoryStorage implements IStorage {
           name: "Potato Chips",
           description: "Crispy kettle-cooked chips",
           price: 2.49,
-          image: "https://images.unsplash.com/photo-1613914153594-49047b5e96da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
+          image: "https://images.unsplash.com/photo-1613919113640-25732ec5e61f?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           category: "Sides",
           popular: false
         });
@@ -295,7 +286,7 @@ class MemoryStorage implements IStorage {
           name: "Pad Thai",
           description: "Stir-fried rice noodles with eggs, tofu, bean sprouts, peanuts in tamarind sauce",
           price: 15.99,
-          image: "https://images.unsplash.com/photo-1600314732556-c0c9b77b41d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
+          image: "https://images.unsplash.com/photo-1637806931098-af30b519be53?q=80&w=3085&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           category: "Noodles",
           popular: true
         });
@@ -325,7 +316,7 @@ class MemoryStorage implements IStorage {
           name: "Mango Sticky Rice",
           description: "Sweet sticky rice with fresh mango slices and coconut cream",
           price: 7.99,
-          image: "https://images.unsplash.com/photo-1621939814912-b5dad3bde9f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
+          image: "https://images.unsplash.com/photo-1711161988375-da7eff032e45?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           category: "Desserts",
           popular: false
         });
@@ -355,7 +346,7 @@ class MemoryStorage implements IStorage {
           name: "Chicken Salad Sandwich",
           description: "House-made chicken salad with grapes and walnuts on whole grain bread",
           price: 11.99,
-          image: "https://images.unsplash.com/photo-1554941829-202a0b2403b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
+          image: "https://images.unsplash.com/photo-1666819604716-7b60a604bb76?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2hpY2tlbiUyMHNhbGFkJTIwc2FuZHdpY2h8ZW58MHx8MHx8fDA%3D",
           category: "Lunch",
           popular: false
         });
@@ -365,7 +356,7 @@ class MemoryStorage implements IStorage {
           name: "Blueberry Muffin",
           description: "Freshly baked blueberry muffin with streusel topping",
           price: 3.99,
-          image: "https://images.unsplash.com/photo-1608198093002-ad4e005484ec?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
+          image: "https://images.unsplash.com/photo-1694496982866-2def130bdfec?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Ymx1YmVycnklMjBtdWZmaW58ZW58MHx8MHx8fDA%3D",
           category: "Pastries",
           popular: true
         });
@@ -396,76 +387,67 @@ class MemoryStorage implements IStorage {
     console.log('In-memory database seeded successfully!');
   }
 
-  // Internal helper to insert a menu item into the in-memory store
-private insertMenuItem(menuItem: InsertMenuItem): MenuItem {
-  const newMenuItem: MenuItem = {
-    id: this.menuItemIdCounter++, // Generate a unique ID
-    name: menuItem.name,
-    description: menuItem.description,
-    image: menuItem.image,
-    restaurantId: menuItem.restaurantId,
-    price: menuItem.price,
-    category: menuItem.category,
-    // Set default value of `popular` to false if not provided
-    popular: menuItem.popular !== undefined ? menuItem.popular : false
-  };
-  this.menuItems.push(newMenuItem); // Store the new item
-  return newMenuItem;
-}
-
-// Fetch all restaurants
-async getRestaurants(): Promise<Restaurant[]> {
-  return this.restaurants;
-}
-
-// Fetch a single restaurant by its ID
-async getRestaurant(id: number): Promise<Restaurant | undefined> {
-  return this.restaurants.find(restaurant => restaurant.id === id);
-}
-
-// Fetch all menu items belonging to a given restaurant
-async getMenuItems(restaurantId: number): Promise<MenuItem[]> {
-  return this.menuItems.filter(menuItem => menuItem.restaurantId === restaurantId);
-}
-
-// Create a new order and store it in memory
-async createOrder(order: InsertOrder): Promise<Order> {
-  const timestamp = new Date(); // Record creation time
-
-  const newOrder: Order = {
-    id: this.orderIdCounter++, // Generate a unique ID
-    restaurantId: order.restaurantId,
-    items: order.items,
-    totalAmount: order.totalAmount,
-    status: order.status || 'pending', // Default status if not provided
-    droneDelivery: order.droneDelivery,
-    coordinates: order.coordinates,
-    customerName: order.customerName,
-    customerEmail: order.customerEmail,
-    customerPhone: order.customerPhone,
-    deliveryAddress: order.deliveryAddress,
-    paymentMethod: order.paymentMethod,
-    paymentStatus: order.paymentStatus || 'pending', // Default payment status
-    createdAt: timestamp
-  };
-
-  this.orders.push(newOrder); // Store the order
-  return newOrder;
-}
-
-// Retrieve a specific order by ID
-async getOrder(id: number): Promise<Order | undefined> {
-  return this.orders.find(order => order.id === id);
-}
-
-// Update the status of an existing order
-async updateOrderStatus(id: number, status: string): Promise<Order | undefined> {
-  const order = this.orders.find(o => o.id === id);
-  if (order) {
-    order.status = status; // Apply new status
+  private insertMenuItem(menuItem: InsertMenuItem): MenuItem {
+    const newMenuItem: MenuItem = {
+      id: this.menuItemIdCounter++,
+      name: menuItem.name,
+      description: menuItem.description,
+      image: menuItem.image,
+      restaurantId: menuItem.restaurantId,
+      price: menuItem.price,
+      category: menuItem.category,
+      popular: menuItem.popular !== undefined ? menuItem.popular : false
+    };
+    this.menuItems.push(newMenuItem);
+    return newMenuItem;
   }
-  return order; // Return updated order (or undefined if not found)
+
+  async getRestaurants(): Promise<Restaurant[]> {
+    return this.restaurants;
+  }
+
+  async getRestaurant(id: number): Promise<Restaurant | undefined> {
+    return this.restaurants.find(restaurant => restaurant.id === id);
+  }
+
+  async getMenuItems(restaurantId: number): Promise<MenuItem[]> {
+    return this.menuItems.filter(menuItem => menuItem.restaurantId === restaurantId);
+  }
+
+  async createOrder(order: InsertOrder): Promise<Order> {
+    const timestamp = new Date();
+    // Make sure we have all required fields with proper defaults
+    const newOrder: Order = {
+      id: this.orderIdCounter++,
+      restaurantId: order.restaurantId,
+      items: order.items,
+      totalAmount: order.totalAmount,
+      status: order.status || 'pending',
+      droneDelivery: order.droneDelivery,
+      coordinates: order.coordinates,
+      customerName: order.customerName,
+      customerEmail: order.customerEmail,
+      customerPhone: order.customerPhone,
+      deliveryAddress: order.deliveryAddress,
+      paymentMethod: order.paymentMethod,
+      paymentStatus: order.paymentStatus || 'pending',
+      createdAt: timestamp
+    };
+    this.orders.push(newOrder);
+    return newOrder;
+  }
+
+  async getOrder(id: number): Promise<Order | undefined> {
+    return this.orders.find(order => order.id === id);
+  }
+
+  async updateOrderStatus(id: number, status: string): Promise<Order | undefined> {
+    const order = this.orders.find(o => o.id === id);
+    if (order) {
+      order.status = status;
+    }
+    return order;
+  }
 }
 
-// Export a singleton instance of MemoryStorage
 export const storage = new MemoryStorage();
